@@ -298,7 +298,7 @@ export default class AdoptionPage extends React.Component {
         ApiService.getAllPeople()
           .then((people) => {
             this.setState({ people });
-            if (people.length === 5) {
+            if (people.length < 5) {
               clearInterval(this.interval);
               this.setState({ atFront: true, waiting: false });
             }
@@ -313,7 +313,6 @@ export default class AdoptionPage extends React.Component {
     this.setState({ name: e.target.value });
   };
 
-  
   render() {
     return (
       <React.Fragment>
@@ -321,15 +320,14 @@ export default class AdoptionPage extends React.Component {
           <h2>Pets currently up for adoption:</h2>
         </div>
         <div className="animals-section">
-            
           <PetSelect
-            pet={this.state.pets.dogs[0]}
+            pet={this.state.pets.cats[0]}
             type={'cat'}
             atFront={this.state.atFront}
             handleAdopt={this.handleAdopt}
           />
           <PetSelect
-            pet={this.state.pets.cats[0]}
+            pet={this.state.pets.dogs[0]}
             type={'dog'}
             atFront={this.state.atFront}
             handleAdopt={this.handleAdopt}
