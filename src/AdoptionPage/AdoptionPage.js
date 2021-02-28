@@ -281,6 +281,7 @@ export default class AdoptionPage extends React.Component {
             .then((people) => {
               this.setState({ people });
               if (people[0] === this.state.name) {
+                this.setState({ atFront: true, waiting: false });
                 clearInterval(this.interval);
                 this.fillQueue();
               }
@@ -298,9 +299,9 @@ export default class AdoptionPage extends React.Component {
         ApiService.getAllPeople()
           .then((people) => {
             this.setState({ people });
-            if (people.length < 5) {
+            if (people.length === 5) {
               clearInterval(this.interval);
-              this.setState({ atFront: true, waiting: false });
+              
             }
           })
           .catch((error) => this.setState({ error }));
